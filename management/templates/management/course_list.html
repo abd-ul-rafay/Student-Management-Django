@@ -1,0 +1,21 @@
+{% extends "management/base_generic.html" %}
+
+{% block content %}
+    <h2>Course List</h2>
+    <form method="GET">
+        <input type="text" name="q" placeholder="Search by Course Code" value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+    {% if courses %}
+        <ul>
+            {% for course in courses %}
+                <li class="loop-list"><a href="{% url 'course-detail' course.id %}">{{course.course_code }} - {{ course.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No course found.</p>
+    {% endif %}
+    <div class="bottom-button">
+        <a href="{% url 'course-add' %}">Add Course</a>
+    </div>
+{% endblock %}

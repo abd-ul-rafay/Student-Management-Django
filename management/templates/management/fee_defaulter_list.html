@@ -1,0 +1,20 @@
+{% extends "management/base_generic.html" %}
+
+{% block content %}
+    <h2>Fee Defaulters</h2>
+    {% if defaulters %}
+        <ul>
+            {% for defaulter in defaulters %}
+                <li>{{ defaulter.student.name }}
+                    <ul>
+                        <li>in {{ defaulter.course.name }} 
+                            (<a href="{% url 'remove-defaulter' defaulter.id %}"><span class="remove-defaulter">remove from fee defaulter</span></a>)
+                        </li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No fee defaulters found.</p>
+    {% endif %}
+{% endblock %}

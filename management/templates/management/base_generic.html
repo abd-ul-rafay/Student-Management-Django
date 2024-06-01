@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    {% load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'management/css/styles.css' %}">
+</head>
+<body>
+    <h1>Student Management System</h1>
+    <nav>
+        <ul class="nav-ul">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'students' %}">Students</a></li>
+            <li><a href="{% url 'courses' %}">Courses</a></li>
+        </ul>
+    </nav>
+    <hr>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

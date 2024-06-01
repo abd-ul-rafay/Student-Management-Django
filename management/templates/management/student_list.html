@@ -1,0 +1,22 @@
+{% extends "management/base_generic.html" %}
+
+{% block content %}
+    <h2>Student List</h2>
+    <form method="GET">
+        <input type="text" name="q" placeholder="Search by ID" value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+    {% if students %}
+        <ul>
+            {% for student in students %}
+                <li class="loop-list"><a href="{% url 'student-detail' student.id %}">{{ student.student_id }} - {{ student.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No student found.</p>
+    {% endif %}
+    <div class="bottom-button">
+        <a href="{% url 'student-add' %}">Add Student</a>
+        <a href="{% url 'fee-defaulter-list' %}">View All Fee Defaulters</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "management/base_generic.html" %}
+
+{% block content %}
+    <h2>{{ student.name }}</h2>
+    <p class="detail-line">Student ID: {{ student.student_id }}</p>
+    <p class="detail-line">Gender: {{ student.gender }}</p>
+    <p class="detail-line">Age: {{ student.age }}</p>
+    <h3>Enrollments</h3>
+    <ul>
+        {% for enrollment in student.enrollment_set.all %}
+            <li>
+                {{ enrollment.course.name }} 
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'enrollment-add' %}">Enroll in a Course</a>
+    <hr>
+    <a class="edit" href="{% url 'student-edit' student.id %}">Edit</a>
+    <a class="delete" href="{% url 'student-delete' student.id %}">Delete</a>
+{% endblock %}

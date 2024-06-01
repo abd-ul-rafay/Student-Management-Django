@@ -1,0 +1,21 @@
+{% extends "management/base_generic.html" %}
+
+{% block content %}
+    <h2>{{ course.name }}</h2>
+    <p class="detail-line">Course Code: {{ course.course_code }}</p>
+    <h3>Pre-requisites</h3>
+    <ul>
+        {% for pre_requisite in course.pre_requisites.all %}
+            <li>{{ pre_requisite.name }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Enrolled Students</h3>
+    <ul>
+        {% for enrollment in course.enrollment_set.all %}
+            <li>{{ enrollment.student.name }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <a class="edit" href="{% url 'course-edit' course.id %}">Edit</a>
+    <a class="delete" href="{% url 'course-delete' course.id %}">Delete</a>
+{% endblock %}
